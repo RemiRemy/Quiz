@@ -11,7 +11,7 @@
 
 Télécharger les sources depuis GitHub :
 ```bash
-git clone https://github.com/RemiRemy/Quiz.git
+git clone https://github.com/RemiRemy/QuizzUp.git
 ```
 
 Télécharger / Mettre à jour les dépendances php :
