@@ -24,6 +24,8 @@ Télécharger / Mettre à jour les dependances node :
 npm install
 ```
 
+Créer la base de donnée ``quizzup`` dans PhpMyAdmin et faire un ``symfony console doctrine:migrations:migrate`` et charger les fixtures avec ``symfony console doctrine:fixtures:load``
+
 ## Lancement du serveur Web
 
 Dans un premier terminal ``symfony serve`` pour lancer le serveur web de symfony et dans un second ``npm run dev-server`` qui permet d'automatiser le build des assets et avoir le hot reload.
