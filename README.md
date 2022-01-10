@@ -7,20 +7,12 @@
 - [git](https://git-scm.com/downloads)
 - [nodejs](https://nodejs.org/en/download/)
 
-## Premiere récuperation
+## Premiere récupération
 
 Télécharger les sources depuis GitHub :
 ```bash
 git clone https://github.com/RemiRemy/QuizzUp.git
-```
-
-Télécharger / Mettre à jour les dépendances php :
-```bash
 composer install
-```
-
-Télécharger / Mettre à jour les dépendances node :
-```bash
 npm install
 ```
 
@@ -36,14 +28,12 @@ git pull origin master
 
 ```
 
-Mettre à jour les dépendances php avec
+Mettre à jour les dépendances Php/node et lancer les migrations et les fixtures
 ```bash
 composer install
-```
-
-Et pour finir mettre à jour les dépendances node avec
-```bash
 npm install
+symfony console doctrine:migrations:migrate
+symfony console doctrine:fixtures:load
 ```
 
 ## Lancement du serveur Web
