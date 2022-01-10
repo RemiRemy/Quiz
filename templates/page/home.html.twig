@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+{% if app.user %}
+    <h1>Bienvenue sur Qu!zzUp, {{ app.user.pseudo }} !</h1>
+    <form method="post" action="{{ path('app_logout') }}">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        <input type="submit" value="Déconnexion">
+    </form>
+    {% else %}
+        <h1>Bienvenue sur Qu!zzUp ! <a href="{{ path('app_login') }}">Cliquez ici pour vous connecter</a></h1>
+{% endif %}
+{% endblock %}
