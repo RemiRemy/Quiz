@@ -1,4 +1,4 @@
-# Scrum Quiz
+# Qu!zzUp
 
 ## Prerequis
 - php 8
@@ -7,24 +7,34 @@
 - [git](https://git-scm.com/downloads)
 - [nodejs](https://nodejs.org/en/download/)
 
-## Premiere récuperation
+## Premiere récupération
 
 Télécharger les sources depuis GitHub :
 ```bash
 git clone https://github.com/RemiRemy/QuizzUp.git
-```
-
-Télécharger / Mettre à jour les dépendances php :
-```bash
 composer install
-```
-
-Télécharger / Mettre à jour les dependances node :
-```bash
 npm install
 ```
 
 Créer la base de donnée ``quizzup`` dans PhpMyAdmin et faire un ``symfony console doctrine:migrations:migrate`` et charger les fixtures avec ``symfony console doctrine:fixtures:load``
+
+## Mettre à jour les sources
+
+Mettre à jour ta branche git
+```bash
+# remplacer "dev-remiL" par le nom de ta branche
+git checkout dev-remiL
+git pull origin master
+
+```
+
+Mettre à jour les dépendances Php/node et lancer les migrations et les fixtures
+```bash
+composer install
+npm install
+symfony console doctrine:migrations:migrate
+symfony console doctrine:fixtures:load
+```
 
 ## Lancement du serveur Web
 
