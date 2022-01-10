@@ -1,4 +1,4 @@
-# Scrum Quiz
+# Qu!zzUp
 
 ## Prerequis
 - php 8
@@ -22,7 +22,7 @@ Créer la base de donnée ``quizzup`` dans PhpMyAdmin et faire un ``symfony cons
 
 Mettre à jour ta branche git
 ```bash
-# remplacer "dev-remiL" par le nom de ta branch
+# remplacer "dev-remiL" par le nom de ta branche
 git checkout dev-remiL
 git pull origin master
 
