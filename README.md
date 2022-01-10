@@ -19,12 +19,32 @@ Télécharger / Mettre à jour les dépendances php :
 composer install
 ```
 
-Télécharger / Mettre à jour les dependances node :
+Télécharger / Mettre à jour les dépendances node :
 ```bash
 npm install
 ```
 
 Créer la base de donnée ``quizzup`` dans PhpMyAdmin et faire un ``symfony console doctrine:migrations:migrate`` et charger les fixtures avec ``symfony console doctrine:fixtures:load``
+
+## Mettre à jour les sources
+
+Mettre à jour ta branche git
+```bash
+# remplacer "dev-remiL" par le nom de ta branch
+git checkout dev-remiL
+git pull origin master
+
+```
+
+Mettre à jour les dépendances php avec
+```bash
+composer install
+```
+
+Et pour finir mettre à jour les dépendances node avec
+```bash
+npm install
+```
 
 ## Lancement du serveur Web
 
