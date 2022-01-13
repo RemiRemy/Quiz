@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Question;
+use App\Form\QuestionType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -57,7 +58,7 @@ class QuestionController extends AdminController
         ] );
     }
 
-    #[Route( "/{question}", name: "admin_question_delete", methods: [ "DELETE" ])]
+    #[Route( "/{question}", name: "admin_question_delete", methods: [ "POST" ])]
     public function delete(Request $request, Question $question): Response
     {
         if ( $this->isCsrfTokenValid( "delete" . $question->getId(), $request->get( "_token" ) ) ) {
