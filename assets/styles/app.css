@@ -1,15 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
 
-*, *:before, *:after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+  --dark-blue: #124e78;
+  --ligth-blue: #48acf0;
+  --yellow: #ffb400;
+  --gray: #e8e9eb;
+  --dark: #333333;
+}
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Righteous', cursive;
+  font-family: "Righteous", cursive;
 }
 
+@import url("header.css");
+
 .error {
-    color: red;
+  color: red;
 }

@@ -1,0 +1,38 @@
+:root {
+  --dark-blue: #124e78;
+  --ligth-blue: #48acf0;
+  --yellow: #ffb400;
+  --gray: #e8e9eb;
+  --dark: #333333;
+}
+
+header {
+  display: flex;
+  background-color: var(--dark-blue);
+  justify-content: space-between;
+  height: 150px;
+}
+
+.logo {
+  margin-left: 80px;
+}
+
+a {
+  font-size: 20px;
+  color: var(--yellow);
+  text-decoration: none;
+  padding: 12px 20px;
+  margin: 8px;
+  border: var(--gray) solid 1px;
+  background-color: var(--gray);
+  border-radius: 20px;
+  box-shadow: inset rgba(177, 174, 174, 0.377) 1px 1px;
+  -webkit-text-stroke: black 1px;
+}
+
+ul {
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+  margin-right: 80px;
+}
