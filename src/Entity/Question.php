@@ -31,9 +31,13 @@ class Question
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'ManyToMany')]
     private $categories;
 
+    #[ORM\OneToMany(mappedBy: 'question', targetEntity: Response::class, cascade: ['persist', 'remove'])]
+    private $responses;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->responses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -112,6 +116,38 @@ class Question
     public function removeCategory(Category $category): self
     {
         $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Response[]
+     */
+    public function getResponses(): Collection
+    {
+        return $this->responses;
+    }
+
+    public function addResponse(Response ...$responses): self
+    {
+        foreach ( $responses as $response) {
+            if (!$this->responses->contains($response)) {
+                $this->responses[] = $response;
+                $response->setQuestion($this);
+            }
+        }
+
+        return $this;
+    }
+
+    public function removeAnswer(Response $response): self
+    {
+        if ($this->responses->removeElement($response)) {
+            // set the owning side to null (unless already changed)
+            if ($response->getQuestion() === $this) {
+                $response->setQuestion(null);
+            }
+        }
 
         return $this;
     }
