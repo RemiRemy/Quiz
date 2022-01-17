@@ -30,6 +30,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255, unique: true)]
     private ?string $pseudo;
 
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: UserPasswordForgot::class, cascade: ['remove'])]
+    private $passwordForgot;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -127,6 +130,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPseudo(string $pseudo): self
     {
         $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getPasswordForgot(): ?UserPasswordForgot
+    {
+        return $this->passwordForgot;
+    }
+
+    public function setPasswordForgot(UserPasswordForgot $passwordForgot): self
+    {
+        // set the owning side of the relation if necessary
+        if ($passwordForgot->getUser() !== $this) {
+            $passwordForgot->setUser($this);
+        }
+
+        $this->passwordForgot = $passwordForgot;
 
         return $this;
     }

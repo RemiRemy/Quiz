@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mot de passe oublié{% endblock %}
+
+{% block body %}
+    <h1>Mot de passe oublié</h1>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button>{{ button_label|default("M'envoyer les instructions par email") }}</button>
+    {{ form_end(form) }}
+{% endblock %}
