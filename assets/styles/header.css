@@ -7,17 +7,15 @@
 }
 
 header {
-  display: flex;
   background-color: var(--dark-blue);
-  justify-content: space-between;
   height: 150px;
 }
 
 .logo {
-  margin-left: 80px;
+  margin-left: 40px;
 }
 
-a {
+.btn {
   font-size: 20px;
   color: var(--yellow);
   text-decoration: none;
@@ -26,13 +24,166 @@ a {
   border: var(--gray) solid 1px;
   background-color: var(--gray);
   border-radius: 20px;
-  box-shadow: inset rgba(177, 174, 174, 0.377) 1px 1px;
-  -webkit-text-stroke: black 1px;
+  box-shadow: inset rgb(200 200 200) 0px 4px 4px 0px;
+  text-shadow: 1px 1px 2px black;
+  letter-spacing: 0.1em;
+  /* -webkit-text-stroke: black 1px; */
 }
 
-ul {
+.burgerLink {
+  color: var(--yellow);
+  text-decoration: none;
+}
+
+.textMenuBurger > li {
+  font-size: 16px;
+  padding: 0 10px;
+}
+
+.textMenu {
   display: flex;
-  list-style-type: none;
   align-items: center;
   margin-right: 80px;
+}
+
+.textMenu {
+  list-style-type: none;
+}
+
+.listeMenu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerBurger {
+  position: absolute;
+  top: 50px;
+  right: 80px;
+  display: none;
+}
+
+.burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: solid var(--yellow) 2px; */
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  margin: 0 10px;
+}
+
+.logoLoupe {
+  width: 50px;
+  height: 50px;
+  margin: 0 10px;
+}
+
+.logoConnect {
+  width: 50px;
+  height: 50px;
+  margin: 0 10px;
+}
+
+.line {
+  width: 40px;
+  height: 4px;
+
+  border-radius: 70px;
+  background-color: var(--yellow);
+  margin: 5px;
+}
+
+.textMenuBurger {
+  transition: top linear 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: var(--ligth-blue);
+  border: black solid 1px;
+  height: 40vh;
+  position: fixed;
+  right: 105px;
+  top: -500px;
+}
+
+.textMenuBurger.show {
+  top: 110px;
+}
+
+/* ---------------------------------------Media queries------------------------------  */
+
+@media screen and (max-width: 900px) {
+  .textMenu {
+    display: none;
+  }
+  .headerBurger {
+    display: flex;
+    top: 45px;
+  }
+  .logo {
+    width: 144px;
+  }
+  header {
+    height: 120px;
+  }
+  .burger {
+    width: 40px;
+    height: 40px;
+  }
+  .line {
+    width: 30px;
+    height: 4px;
+    margin: 3px;
+  }
+  .logoLoupe {
+    width: 40px;
+    height: 40px;
+  }
+  .logoConnect {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .textMenuBurger.show {
+    top: -500px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .logo {
+    margin-left: 16px;
+    width: 120px;
+    height: auto;
+  }
+  .headerBurger {
+    right: 20px;
+    top: 35px;
+  }
+  .textMenuBurger {
+    right: 25px;
+  }
+  header {
+    height: 108px;
+  }
+  .burger {
+    width: 30px;
+    height: 30px;
+  }
+  .line {
+    width: 20px;
+    height: 2px;
+    margin: 2px;
+  }
+  .logoLoupe {
+    width: 30px;
+    height: 30px;
+  }
+  .logoConnect {
+    width: 30px;
+    height: 30px;
+  }
 }

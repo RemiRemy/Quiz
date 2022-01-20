@@ -1,0 +1,85 @@
+:root {
+  --dark-blue: #124e78;
+  --ligth-blue: #48acf0;
+  --yellow: #ffb400;
+  --gray: #e8e9eb;
+  --dark: #333333;
+}
+
+nav {
+  height: 90px;
+  background-color: var(--ligth-blue);
+}
+
+.allNav {
+  height: 90px;
+  display: flex;
+  font-size: 25px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navUl {
+  display: flex;
+  align-items: center;
+  width: 60vw;
+  margin-left: 76px;
+  /* justify-content: space-around; */
+  list-style-type: none;
+}
+
+.navLi {
+  text-decoration: none;
+  margin-right: 48px;
+  color: var(--yellow);
+  /* letter-spacing: 0.1em; */
+  /* -webkit-text-stroke: black 1px; */
+  text-shadow: 1px 1px 2px black;
+}
+
+.navLogoHome {
+  text-shadow: 1px 1px 2px black;
+  box-shadow: 1px 1px 2px black;
+}
+
+/* ------------------------------------ Right nav --------------------------------------- */
+
+.field {
+  /* transform: skew(25deg); */
+}
+
+.navRight form {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.navRight {
+  display: flex;
+  margin-right: 32px;
+}
+
+.skew {
+  padding: 0 20px;
+  transform: skew(15deg);
+  border-radius: 15px;
+  height: 52px;
+  width: 399px;
+  border: var(--dark-blue) 2px solid;
+  background-color: var(--gray);
+  overflow: hidden;
+}
+
+.skew .field {
+  transform: skew(-15deg);
+  height: 52px;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  letter-spacing: 0.08em;
+}
+
+.navLogoLoupe {
+  filter: drop-shadow(1px 1px 2px black);
+}

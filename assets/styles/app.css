@@ -21,6 +21,7 @@ body {
 }
 
 @import url("header.css");
+@import url("nav.css");
 
 .error {
   color: red;

@@ -6,18 +6,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quizzup !</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <script src="/js/burgerMenu.js" defer></script>
 </head>
 
 <body>
+
     <header>
 
-        <img class="logo" src="/img/QuizzUp_logo 1.png" alt="logo quizzup">
-        <ul class="">
-            <li><a class="btn" href="">Inscription</a></li>
-            <li><a class="btn" href="">Connexion</a></li>
-        </ul>
+        <div id="burgerMenu">
+            <div class="headerBurger">
+                <img class="logoLoupe" src="/img/iconLoupe.png" alt="logo recherche">
+                <img class="logoConnect" src="/img/iconConnect.png" alt="logo connexion">
+
+                <div class="burger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+            <div class="listeMenu">
+                <img class="logo" src="/img/QuizzUp_logo 1.png" alt="logo quizzup">
+                <ul class="textMenu">
+                    <li><a class="btn" href="#">Inscription</a></li>
+                    <li><a class="btn" href="#">Connexion</a></li>
+                </ul>
+                <ul class="textMenuBurger">
+                    <li><a class="burgerLink" href="#">Rejoindre une partie</a></li>
+                    <li><a class="burgerLink" href="#">Classements</a></li>
+                    <li><a class="burgerLink" href="#">Créer quizz</a></li>
+                </ul>
+
+
+
+            </div>
+        </div>
+        </div>
 
     </header>
+
 </body>
 
 </html>
