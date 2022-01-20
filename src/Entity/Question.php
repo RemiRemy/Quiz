@@ -140,6 +140,20 @@ class Question
         return $this;
     }
 
+    /**
+     * Ajoute des réponses vide à une question
+     *
+     * @param int $amount - nombre de réponses vide à ajouter
+     * @return $this
+     */
+    public function requiredResponse(int $amount): self {
+        for($i = 0; $i < $amount; $i++) {
+            $this->addResponse(new Response());
+        }
+
+        return $this;
+    }
+
     public function removeAnswer(Response $response): self
     {
         if ($this->responses->removeElement($response)) {
