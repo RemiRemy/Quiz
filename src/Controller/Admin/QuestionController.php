@@ -23,7 +23,8 @@ class QuestionController extends AdminController
 
     #[Route( "/add", name: "admin_question_add", methods: [ "GET", "POST" ] )]
     public function add(Request $request): Response {
-        $question = new Question();
+        // On crée une instance de Question avec 4 qui demande 4 réponses
+        $question = (new Question())->requiredResponse(4);
 
         $form = $this->createForm( QuestionType::class, $question );
         $form->handleRequest( $request );
