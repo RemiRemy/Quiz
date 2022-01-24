@@ -6,6 +6,7 @@ use App\Repository\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
 class Question
@@ -33,6 +34,9 @@ class Question
 
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Response::class, cascade: ['persist', 'remove'])]
     private $responses;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'questions')]
+    private $user;
 
     public function __construct()
     {
@@ -162,6 +166,18 @@ class Question
                 $response->setQuestion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User|UserInterface|null $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

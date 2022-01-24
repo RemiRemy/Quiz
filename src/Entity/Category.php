@@ -55,7 +55,7 @@ class Category
     {
         if (!$this->questions->contains($question)) {
             $this->questions[] = $question;
-            $question->addOtherCategory($this);
+            $question->addCategory($this);
         }
 
         return $this;
@@ -64,7 +64,7 @@ class Category
     public function removeQuestion(Question $question): self
     {
         if ($this->questions->removeElement($question)) {
-            $question->removeOtherCategory($this);
+            $question->removeCategory($this);
         }
 
         return $this;

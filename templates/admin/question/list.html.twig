@@ -11,6 +11,7 @@
             <th>#</th>
             <th>Question</th>
             <th>Catégories</th>
+            <th>Utilisateur</th>
             <th>Activé ?</th>
             <th></th>
         </tr>
@@ -21,6 +22,7 @@
                     <td>{{ question.id }}</td>
                     <td>{{ question.statement }}</td>
                     <td>{{ question.categories | map(c => question.firstCategory.id == c.id ? "<strong>#{c.label}</strong>" : c.label) | join(', ') | raw}}</td>
+                    <td>{{ question.user.pseudo ?? "" }}</td>
                     <td>{{ question.status ? "oui" : "non" }}</td>
                     <td>
                         <a href="{{ path('admin_question_edit', {question: question.id}) }}">Modifier</a>
