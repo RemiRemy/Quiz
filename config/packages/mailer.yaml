@@ -1,3 +1,6 @@
 framework:
     mailer:
         dsn: '%env(MAILER_DSN)%'
+        headers:
+            from: 'QuizzUp.fr <no-reply@quizzup.fr>'
+            to: 'Equipe QuizzUp <contact@quizzup.fr>'

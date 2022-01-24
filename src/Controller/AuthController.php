@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Email\PasswordForgotEmail;
 use App\Entity\User;
 use App\Entity\UserPasswordForgot;
 use App\Form\PasswordChangeType;
@@ -14,11 +15,11 @@ use LogicException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\String\ByteString;
 
@@ -77,6 +78,7 @@ class AuthController extends AbstractController
             if ($user) {
                 // On récupère UserPasswordForgot de l'utilisateur s'il est null on crée une nouvelle instance.
                 $passwordForgot = $user->getPasswordForgot() ?? new UserPasswordForgot();
+                $passwordForgot->setUser($user);
                 $passwordForgot->setToken(ByteString::fromRandom())->setCreatedAt(new DateTimeImmutable()); // On génère un string random et on le met à la date du jour
 
                 // On sauvegarde en base de donné le UserPasswordForgot
@@ -87,16 +89,27 @@ class AuthController extends AbstractController
                 // On met à jour l'utilisateur
                 $user->setPasswordForgot($passwordForgot);
 
-                // TODO revoir ca
                 // Envoi de l'email
-                $email = (new Email())
-                    ->from('no-reply@quizzup.fr')
-                    ->to($user->getEmail())
-                    ->subject('Changement de mot de passe')
-                    ->text('Pour changer votre mot de passe cliquez sur le lien ' . $this->generateUrl('app_password_change', ['token' => $passwordForgot->getToken()], UrlGeneratorInterface::NETWORK_PATH))
-                    ->html('Pour changer votre mot de passe cliquez sur le lien <a href="' . $this->generateUrl('app_password_change', ['token' => $passwordForgot->getToken()], UrlGeneratorInterface::NETWORK_PATH) . '">Changer le mot de passe</a>')
-                ;
-                $mailer->send($email);
+                try {
+                    $mailer->send(
+                        (new PasswordForgotEmail($passwordForgot))
+                            ->to(new Address($user->getEmail(), $user->getPseudo()))
+                    );
+
+                    /*
+                    $mailer->send(
+                        (new TemplatedEmail())
+                            ->to(new Address($user->getEmail(), $user->getPseudo()))
+                            ->subject("Changement de mot de passe")
+                            ->htmlTemplate("emails/password_forgot.html.twig")
+                            ->textTemplate("emails/password_forgot.txt.twig")
+                            ->context(["token" => $passwordForgot->getToken()])
+                    );
+                    */
+                } catch ( TransportExceptionInterface $e ) {
+                    $this->addFlash( "error", "Il y a eu un problème. Merci de recommencer !" );
+                    return $this->redirectToRoute('app_password_forgot');
+                }
             }
 
             $this->addFlash( "success", "Vous allez recevoir un email a l'adresse <strong>{$form->get("email")->getData()}</strong>, une fois la vérification effectuée vous allez pouvoir changer de mot de passe." );
@@ -106,7 +119,7 @@ class AuthController extends AbstractController
         return $this->renderForm( 'auth/password/forgot.html.twig', ['form' => $form]);
     }
 
-    #[Route('/password/change', name: 'app_password_change', methods: ['GET', 'POST'])]
+    #[Route('/password/change/{token}', name: 'app_password_change', methods: ['GET', 'POST'])]
     public function passwordChange(Request $request, UserPasswordForgotRepository $repository, UserPasswordHasherInterface $passwordHasher): Response {
         if ($this->getUser()) {
             return $this->redirectToRoute('app_home');
