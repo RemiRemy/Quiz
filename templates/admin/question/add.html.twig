@@ -6,6 +6,6 @@
     <h1>Ajouter une question</h1>
     {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button>{{ button_label|default("Ajouter") }}</button>
+    <button class="btn btn-primary">{{ button_label|default("Ajouter") }}</button>
     {{ form_end(form) }}
 {% endblock %}

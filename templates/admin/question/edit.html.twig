@@ -6,10 +6,10 @@
     <h1>Modifier une question</h1>
     <form method="post" action="{{ path('admin_question_delete', {question: question.id}) }}" onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer la question n°{{ question.id }} ?');">
         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ question.id) }}">
-        <input type="submit" value="Supprimer">
+        <input class="btn btn-danger" type="submit" value="Supprimer">
     </form>
     {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button>{{ button_label|default("Modifier") }}</button>
+    <button class="btn btn-primary">{{ button_label|default("Modifier") }}</button>
     {{ form_end(form) }}
 {% endblock %}

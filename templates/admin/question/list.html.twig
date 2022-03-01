@@ -3,32 +3,69 @@
 {% block title %}Liste des questions{% endblock %}
 
 {% block body %}
-    <h1>Liste des questions</h1>
-    <a href="{{ path('admin_question_add') }}">Ajouter une question</a>
-    <table>
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>Question</th>
-            <th>Catégories</th>
-            <th>Utilisateur</th>
-            <th>Activé ?</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-            {% for question in questionList %}
+    <div class="row mb-4">
+        <div class="col">
+            <a class="btn btn-outline-info" href="{{ path('admin_question_add') }}">Ajouter une question</a>
+        </div>
+    </div>
+
+    <div class="row my-4">
+        <div class="col">
+            <h1>Liste des questions en attente de validation</h1>
+            <table class="table table-hover">
+                <thead>
                 <tr>
-                    <td>{{ question.id }}</td>
-                    <td>{{ question.statement }}</td>
-                    <td>{{ question.categories | map(c => question.firstCategory.id == c.id ? "<strong>#{c.label}</strong>" : c.label) | join(', ') | raw}}</td>
-                    <td>{{ question.user.pseudo ?? "" }}</td>
-                    <td>{{ question.status ? "oui" : "non" }}</td>
-                    <td>
-                        <a href="{{ path('admin_question_edit', {question: question.id}) }}">Modifier</a>
-                    </td>
+                    <th style="width: 50px;">#</th>
+                    <th style="width: 50%;">Question</th>
+                    <th style="width: 50%;">Catégories</th>
+                    <th style="width: 100px;">Utilisateur</th>
+                    <th style="width: 100px;"></th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                </thead>
+                <tbody>
+                {% for question in questionToCheckList %}
+                    <tr>
+                        <td>{{ question.id }}</td>
+                        <td>{{ question.statement }}</td>
+                        <td>{{ question.categories | map(c => question.firstCategory.id == c.id ? "<strong>#{c.label}</strong>" : c.label) | join(', ') | raw}}</td>
+                        <td>{{ question.user.pseudo ?? "" }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-success" href="{{ path('admin_question_edit', {question: question.id}) }}">Modifier</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col">
+            <h1>Liste des questions</h1>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th style="width: 50px;">#</th>
+                    <th style="width: 50%;">Question</th>
+                    <th style="width: 50%;">Catégories</th>
+                    <th style="width: 100px;">Utilisateur</th>
+                    <th style="width: 100px;"></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for question in questionCheckedList %}
+                    <tr>
+                        <td>{{ question.id }}</td>
+                        <td>{{ question.statement }}</td>
+                        <td>{{ question.categories | map(c => question.firstCategory.id == c.id ? "<strong>#{c.label}</strong>" : c.label) | join(', ') | raw}}</td>
+                        <td>{{ question.user.pseudo ?? "" }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-success" href="{{ path('admin_question_edit', {question: question.id}) }}">Modifier</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

@@ -13,11 +13,14 @@ class QuestionController extends AdminController
 {
     #[Route( "/", name: "admin_question_list", methods: [ "GET" ] )]
     public function list(): Response {
-        $questionList = $this->getDoctrine()->getManager()
-            ->getRepository( Question::class )->findAll();
+        $questionToCheckList = $this->getDoctrine()->getManager()
+            ->getRepository( Question::class )->findBy(["status" => false]);
+        $questionCheckedList = $this->getDoctrine()->getManager()
+            ->getRepository( Question::class )->findBy(["status" => true]);
 
         return $this->render( "admin/question/list.html.twig", [
-            "questionList" => $questionList,
+            "questionToCheckList" => $questionToCheckList,
+            "questionCheckedList" => $questionCheckedList,
         ] );
     }
 
